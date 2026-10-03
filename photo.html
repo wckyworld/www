@@ -57,7 +57,8 @@
             padding: 20px 20px 80px;
         }
 
-        .gallery a {
+        .gallery > a,
+        .gallery > img {
             display: block;
             break-inside: avoid;
             margin-bottom: 14px;
@@ -95,7 +96,24 @@
     <main class="gallery" id="gallery"></main>
 
     <script>
-       
+        /* ============================================================
+         * PHOTOS
+         *
+         * Add images here. Each entry can be:
+         *
+         *   1) A URL or filename string, linked to the full image:
+         *        "https://images.unsplash.com/photo-..."
+         *        "Image.jpeg"
+         *
+         *   2) An object, for extra control:
+         *        { src: "woods.jpg" }                        // linked to itself
+         *        { src: "woods.jpg", alt: "Woods at dawn" }  // custom alt text
+         *        { src: "woods.jpg", href: "https://..." }   // custom link
+         *        { src: "woods.jpg", href: null }            // plain image, no link
+         *
+         * Plain local images just need the filename; drop the file in this
+         * folder next to photo.html.
+         * ============================================================ */
         var PHOTOS = [
             "https://images.unsplash.com/photo-1690834515760-ed10d3760f64?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D",
             "https://images.unsplash.com/photo-1672654135130-2f49ff14fff1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mnx8fGVufDB8fHx8fA%3D%3D",
@@ -104,6 +122,10 @@
             "https://images.unsplash.com/photo-1670090090031-8537c2ac51a9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8N3x8fGVufDB8fHx8fA%3D%3D",
             "https://images.unsplash.com/photo-1670098596823-2ff4f3fb4cfa?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Nnx8fGVufDB8fHx8fA%3D%3D",
             "https://images.unsplash.com/photo-1698401422830-9ed810994256?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8M3x8fGVufDB8fHx8fA%3D%3D",
+            "assets/images/fire.jpeg",
+            "assets/images/tree.jpeg",
+            // Plain local images can be added like this:
+            // "Image.jpeg",
         ];
 
         (function () {
@@ -111,17 +133,31 @@
 
             var gallery = document.getElementById("gallery");
 
-            PHOTOS.forEach(function (url, index) {
-                var link = document.createElement("a");
-                link.href = url;
-                link.target = "_blank";
-                link.rel = "noopener";
+            PHOTOS.forEach(function (entry, index) {
+                // A plain string is shorthand for { src: entry }.
+                var photo = (typeof entry === "string") ? { src: entry } : entry;
+
+                if (!photo || !photo.src) {
+                    return;
+                }
 
                 var img = document.createElement("img");
-                img.src = url;
-                img.alt = "Photo " + (index + 1) + " by wcky";
+                img.src = photo.src;
+                img.alt = photo.alt || "Photo " + (index + 1) + " by wcky";
                 img.loading = "lazy";
 
+                // href defaults to the image itself; use href: null for a plain image.
+                var href = ("href" in photo) ? photo.href : photo.src;
+
+                if (!href) {
+                    gallery.appendChild(img);
+                    return;
+                }
+
+                var link = document.createElement("a");
+                link.href = href;
+                link.target = "_blank";
+                link.rel = "noopener";
                 link.appendChild(img);
                 gallery.appendChild(link);
             });
