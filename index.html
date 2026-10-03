@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+    <meta charset="utf-8">
+    <title>GEORGE MORLEY</title>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <style>
+        html,
+        body {
+            background-color: blue;
+            color: white;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        a:link {
+        color: white;
+        }
+
+        a:visited {
+        color: white;
+        }
+
+        a:hover {
+        color: blue;
+        background-color: white;
+        }
+
+        #main {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #timezone {
+            position: fixed;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: white;
+            text-align: center;
+            line-height: 1.35;
+        }
+
+
+        #contact {
+            position: fixed;
+            right: 16px;
+            bottom: 12px;
+            font-size: 14px;
+            color: white;
+            text-align: right;
+            line-height: 1.35;
+        }
+
+        #contact .address {
+            margin-top: 8px;
+        }
+
+        #year {
+            position: fixed;
+            left: 16px;
+            bottom: 12px;
+            font-size: 14px;
+            color: white;
+            text-align: left;
+            line-height: 1.35;
+        }
+    </style>
+
+    <script>
+        const formatter = new Intl.DateTimeFormat([], {
+            timeZone: "Europe/London",
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric",
+            timeZoneName: "short"
+        });
+
+        function updateTime() {
+            const parts = formatter.formatToParts(new Date());
+
+            document.getElementById("time").textContent =
+                parts
+                    .filter(part => part.type !== "timeZoneName")
+                    .map(part => part.value)
+                    .join("");
+
+            document.getElementById("tz").textContent =
+                parts.find(part => part.type === "timeZoneName").value;
+        }
+
+        window.onload = () => {
+            updateTime();
+            setInterval(updateTime, 1000);
+        };
+    </script>
+
+</head>
+
+<body>
+    
+    <div id="main">
+        <div>
+            <font size="12"><b>GEORGE MORLEY</b></font>
+    
+            <br><br>
+
+            <a href="http://wcky.fyi/about.html">about</a> //
+            <a href="https://wcky.fyi/blog.html">blog</a> //
+            <a href="https://www.youtube.com/@jamesscholz">youtube</a> //
+            <a href="https://github.com/wckyworld">github</a> //
+            <a href="https://www.glimpsefoundation.net/">glimpse</a>
+    
+            <span id="timezone">
+                TIME IN UNITED KINGDOM -
+                <span id="time">0:00 PM</span>
+                <span id="tz">BST</span>
+            </span>
+
+        </div>
+    </div>
+
+
+    <div id="year">
+        <div>2026</div>
+    </div>
+
+    <div id="contact">
+        <div>george[at]wcky[dot]fyi</div>
+    </div>
+
+</body>
+</html>
