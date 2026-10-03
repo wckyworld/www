@@ -1,0 +1,30 @@
+#site-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 12px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: end;
+    gap: 12px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: white;
+    line-height: 1.35;
+}
+
+#site-footer .footer-year {
+    justify-self: start;
+    text-align: left;
+}
+
+#site-footer .footer-timezone {
+    justify-self: center;
+    text-align: center;
+}
+
+#site-footer .footer-contact {
+    justify-self: end;
+    text-align: right;
+}

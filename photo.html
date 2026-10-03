@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>photos</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="footer.css">
+
+    <style>
+        html,
+        body {
+            background-color: blue;
+            color: white;
+            margin: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        a:link {
+            color: white;
+        }
+
+        a:visited {
+            color: white;
+        }
+
+        a:hover {
+            color: blue;
+            background-color: white;
+        }
+
+        .page-header {
+            padding: 28px 20px 4px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: normal;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        /* Masonry grid: full-bleed, big images, preserves each photo's aspect ratio */
+        .gallery {
+            column-count: 3;
+            column-gap: 14px;
+            padding: 20px 20px 80px;
+        }
+
+        .gallery a {
+            display: block;
+            break-inside: avoid;
+            margin-bottom: 14px;
+        }
+
+        .gallery a:hover {
+            background-color: transparent;
+        }
+
+        .gallery img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 1000px) {
+            .gallery {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery {
+                column-count: 1;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="gallery" id="gallery"></main>
+
+    <script>
+       
+        var PHOTOS = [
+            "https://images.unsplash.com/photo-1690834515760-ed10d3760f64?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1672654135130-2f49ff14fff1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mnx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1690834515319-5714148dd71b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1672654064041-60ee1432f7b7?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NXx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1670090090031-8537c2ac51a9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8N3x8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1670098596823-2ff4f3fb4cfa?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Nnx8fGVufDB8fHx8fA%3D%3D",
+        ];
+
+        (function () {
+            "use strict";
+
+            var gallery = document.getElementById("gallery");
+
+            PHOTOS.forEach(function (url, index) {
+                var link = document.createElement("a");
+                link.href = url;
+                link.target = "_blank";
+                link.rel = "noopener";
+
+                var img = document.createElement("img");
+                img.src = url;
+                img.alt = "Photo " + (index + 1) + " by wcky";
+                img.loading = "lazy";
+
+                link.appendChild(img);
+                gallery.appendChild(link);
+            });
+        })();
+    </script>
+
+    <script src="footer.js" defer></script>
+
+</body>
+
+</html>
