@@ -38,7 +38,7 @@
 
         var yearCell = isHomePage()
             ? '<div class="footer-year">' + year + '</div>'
-            : '<div class="footer-year"><a class="footer-home" href="' + homeUrl() + '">&larr; home</a></div>';
+            : '<div class="footer-year"><a class="footer-home" href="' + homeUrl() + '">RETURN HOME</a></div>';
 
         var footer = document.createElement("footer");
         footer.id = "site-footer";
