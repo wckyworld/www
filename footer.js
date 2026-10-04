@@ -18,13 +18,32 @@
         year: "numeric"
     });
 
+    function isHomePage() {
+        var last = location.pathname.split("/").pop().toLowerCase();
+        return last === "" || last === "index.html";
+    }
+
+    function homeUrl() {
+        var scripts = document.getElementsByTagName("script");
+        for (var i = 0; i < scripts.length; i++) {
+            if (/footer\.js(?:[?#].*)?$/.test(scripts[i].src)) {
+                return scripts[i].src.replace(/footer\.js(?:[?#].*)?$/, "") + "index.html";
+            }
+        }
+        return "index.html";
+    }
+
     function renderFooter() {
         var year = yearFormatter.format(new Date());
+
+        var yearCell = isHomePage()
+            ? '<div class="footer-year">' + year + '</div>'
+            : '<div class="footer-year"><a class="footer-home" href="' + homeUrl() + '">&larr; home</a></div>';
 
         var footer = document.createElement("footer");
         footer.id = "site-footer";
         footer.innerHTML =
-            '<div class="footer-year">' + year + '</div>' +
+            yearCell +
             '<div class="footer-timezone">' +
                 TIME_LABEL + ' - ' +
                 '<span id="footer-time">0:00 PM</span> ' +

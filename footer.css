@@ -22,6 +22,18 @@
     text-align: left;
 }
 
+#site-footer .footer-home {
+    color: white;
+    text-decoration: none;
+    font: inherit;
+}
+
+#site-footer .footer-home:hover,
+#site-footer .footer-home:focus-visible {
+    background-color: white;
+    color: blue;
+}
+
 #site-footer .footer-timezone {
     justify-self: center;
     text-align: center;
