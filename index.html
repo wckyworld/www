@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GEORGE MORLEY</title>
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -39,10 +40,39 @@
 
         #main {
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 24px 20px 100px;
+            box-sizing: border-box;
+        }
+
+        .site-title {
+            margin: 0 0 0.6em;
+            line-height: 1.1;
+            font-size: clamp(28px, 9vw, 48px);
+            overflow-wrap: break-word;
+        }
+
+        .site-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.35em 0.6em;
+            font-size: clamp(15px, 4vw, 18px);
+            line-height: 1.5;
+        }
+
+        .site-nav .sep {
+            user-select: none;
+        }
+
+        @media (max-width: 600px) {
+            #main {
+                padding-bottom: 130px;
+            }
         }
     </style>
 </head>
@@ -51,15 +81,19 @@
 
     <div id="main">
         <div>
-            <font size="12"><b>GEORGE MORLEY</b></font>
+            <h1 class="site-title">GEORGE MORLEY</h1>
 
-            <br><br>
-
-            <a href="http://www.wcky.fyi/about.html">about</a> ~
-            <a href="https://www.wcky.fyi/photo.html">photos</a> ~
-            <a href="https://www.youtube.com/@wckyworld">youtube</a> ~
-            <a href="https://github.com/wckyworld">github</a> ~
-            <a href="https://www.glimpsefoundation.net/">glimpse</a>
+            <nav class="site-nav">
+                <a href="http://www.wcky.fyi/about.html">about</a>
+                <span class="sep">~</span>
+                <a href="https://www.wcky.fyi/photo.html">photos</a>
+                <span class="sep">~</span>
+                <a href="https://www.youtube.com/@wckyworld">youtube</a>
+                <span class="sep">~</span>
+                <a href="https://github.com/wckyworld">github</a>
+                <span class="sep">~</span>
+                <a href="https://www.glimpsefoundation.net/">glimpse</a>
+            </nav>
         </div>
     </div>
 

@@ -43,3 +43,20 @@
     justify-self: end;
     text-align: right;
 }
+
+@media (max-width: 600px) {
+    #site-footer {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 10px 12px;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    #site-footer .footer-year,
+    #site-footer .footer-timezone,
+    #site-footer .footer-contact {
+        justify-self: center;
+        text-align: center;
+    }
+}
