@@ -9,11 +9,11 @@
     gap: 12px;
     padding: 12px 16px;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
     font-size: 14px;
-    color: white;
+    color: #111111;
     line-height: 1.35;
-    background-color: blue;
+    background-color: #eeeeee;
     font-weight: 700;
 }
 
@@ -23,15 +23,15 @@
 }
 
 #site-footer .footer-home {
-    color: white;
+    color: #111111;
     text-decoration: none;
     font: inherit;
 }
 
 #site-footer .footer-home:hover,
 #site-footer .footer-home:focus-visible {
-    background-color: white;
-    color: blue;
+    background-color: #111111;
+    color: #eeeeee;
 }
 
 #site-footer .footer-timezone {
